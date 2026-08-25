@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A privacy-first, reviewable nutrition reflection prototype for individuals and RDNs.">
+  <title>NutriSight Review Lab</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="NutriSight Review Lab home">
+      <span class="brand-mark" aria-hidden="true">N</span>
+      <span>NutriSight <strong>Review Lab</strong></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#workflow">Workflow</a>
+      <a href="#safety">Safety</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">HACK FOR HUMANITY · PHYSICAL WELL-BEING</p>
+        <h1>Turn a meal memory into a better health conversation.</h1>
+        <p class="lede">NutriSight Review Lab helps people organize what they ate, make uncertainty visible, and prepare a concise record for a registered dietitian nutritionist (RDN)—without pretending to diagnose or prescribe.</p>
+        <a class="button primary" href="#workflow">Try the review workflow</a>
+      </div>
+      <aside class="promise-card" aria-label="Product promise">
+        <span class="status-dot"></span>
+        <p class="card-kicker">Designed for responsible reflection</p>
+        <strong>Observed → Estimated → Confirmed</strong>
+        <p>Your notes remain in this browser. The prototype sends nothing to a server.</p>
+      </aside>
+    </section>
+
+    <section class="workflow" id="workflow">
+      <div class="section-heading">
+        <p class="eyebrow">A REVIEWABLE WORKFLOW</p>
+        <h2>Build a meal brief in three careful steps</h2>
+        <p>Start with visible facts, add context only when known, then choose what needs professional interpretation.</p>
+      </div>
+
+      <div class="stepper" aria-label="Workflow progress">
+        <button class="step active" data-step="1"><span>1</span> Observe</button>
+        <button class="step" data-step="2"><span>2</span> Clarify</button>
+        <button class="step" data-step="3"><span>3</span> Review brief</button>
+      </div>
+
+      <div class="workspace">
+        <form id="meal-form" class="panel form-panel">
+          <section class="form-step active" data-panel="1">
+            <h3>What can you confidently observe?</h3>
+            <label for="meal-name">Meal or moment</label>
+            <input id="meal-name" name="mealName" value="Lunch after a busy workday" maxlength="80">
+
+            <label for="components">Visible components <span>— one per line</span></label>
+            <textarea id="components" name="components" rows="5">Whole-grain bread
+Leafy greens
+Tomato
+Protein filling</textarea>
+
+            <fieldset>
+              <legend>How certain are you about the portion?</legend>
+              <div class="choice-row">
+                <label><input type="radio" name="certainty" value="Low"> Low</label>
+                <label><input type="radio" name="certainty" value="Medium" checked> Medium</label>
+                <label><input type="radio" name="certainty" value="High"> High</label>
+              </div>
+            </fieldset>
+          </section>
+
+          <section class="form-step" data-panel="2">
+            <h3>Add only the context you know</h3>
+            <label for="preparation">Preparation details</label>
+            <input id="preparation" name="preparation" placeholder="For example: baked, fried, sauce on the side">
+
+            <label for="goal">What would you like to understand?</label>
+            <select id="goal" name="goal">
+              <option>Meal balance and variety</option>
+              <option>Energy around daily activities</option>
+              <option>Patterns to discuss with an RDN</option>
+              <option>Questions about ingredients</option>
+            </select>
+
+            <label for="missing">What is still unknown?</label>
+            <textarea id="missing" name="missing" rows="4" placeholder="Portion size, hidden ingredients, preparation oil…">Exact portion size and ingredients in the protein filling</textarea>
+
+            <label class="checkbox"><input id="consent" type="checkbox"> I understand this is a reflection tool, not medical advice.</label>
+          </section>
+
+          <section class="form-step" data-panel="3">
+            <h3>Your RDN-ready discussion brief</h3>
+            <div id="brief" class="brief" aria-live="polite"></div>
+            <button type="button" class="button secondary" id="copy-brief">Copy brief</button>
+            <button type="button" class="text-button" id="reset-workflow">Start a new brief</button>
+          </section>
+
+          <div class="form-actions">
+            <button type="button" class="button secondary" id="back" disabled>Back</button>
+            <button type="button" class="button primary" id="next">Continue</button>
+          </div>
+        </form>
+
+        <aside class="panel evidence-panel" aria-label="Evidence boundaries">
+          <p class="card-kicker">Evidence boundary</p>
+          <h3 id="boundary-title">Observation is not interpretation</h3>
+          <p id="boundary-copy">A meal description can document visible components. It cannot reliably establish quantities, hidden ingredients, health effects, or personal dietary needs.</p>
+          <div class="signal-list">
+            <div><span class="signal observed"></span><strong>Observed</strong><small>What you can identify directly</small></div>
+            <div><span class="signal estimated"></span><strong>Estimated</strong><small>What may be true but needs confirmation</small></div>
+            <div><span class="signal reviewed"></span><strong>For RDN review</strong><small>What needs qualified interpretation</small></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="safety" id="safety">
+      <div class="section-heading">
+        <p class="eyebrow">GOVERNANCE FIRST</p>
+        <h2>Safety is part of the product, not fine print</h2>
+      </div>
+      <div class="principles">
+        <article><span>01</span><h3>No diagnosis</h3><p>The prototype does not diagnose conditions, calculate treatment, or replace clinical judgment.</p></article>
+        <article><span>02</span><h3>Visible uncertainty</h3><p>Missing details remain visible instead of being silently converted into false precision.</p></article>
+        <article><span>03</span><h3>Human correction</h3><p>People can revise the record before using it in a conversation with a qualified professional.</p></article>
+        <article><span>04</span><h3>Local by default</h3><p>This demo stores the current brief in the browser and has no analytics or remote database.</p></article>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div>
+        <p class="eyebrow">WHY THIS MATTERS</p>
+        <h2>Less friction. Better questions. More honest AI.</h2>
+      </div>
+      <p>Food logging is tedious, while automated nutrition claims can hide uncertainty. NutriSight Review Lab explores a safer middle ground: technology organizes the evidence, the individual corrects the context, and credentialed nutrition professionals retain the role of interpretation. The prototype seeks an RDN advisor for validation and pilot design.</p>
+    </section>
+  </main>
+
+  <footer>
+    <strong>NutriSight Review Lab</strong>
+    <p>Prototype created for Hack for Humanity Summer 2026 · Solo project by Kasper Mathiesen</p>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
